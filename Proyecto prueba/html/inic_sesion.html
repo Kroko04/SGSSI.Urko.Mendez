@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' https://www.google.com/ 'unsafe-inline';
+        script-src 'self' https://code.jquery.com/ https://www.google.com/ https://www.gstatic.com 'unsafe-inline';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data:;
+        form-action 'self';
+    ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión | Mi Web</title>
+
+    <!-- Fuente y estilos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #444;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #0077ff;
+        }
+
+        .btn-login {
+            background-color: #0077ff;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #005fcc;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .note a {
+            color: #0077ff;
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+
+        <form id="login-form" action="login.php" method="post">
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" placeholder="usuario@correo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passwd">Contraseña</label>
+                <input type="password" id="passwd" name="passwd" placeholder="********" required>
+            </div>
+
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+
+            <button 
+                class="g-recaptcha btn-login" 
+                data-sitekey="6Lc-xQspAAAAAMNfCH3z01L4BvbxZD2fTyLvnE7r" 
+                id="btnEnviar" 
+                name="btnEnviar" 
+                type="button" 
+                onclick="iniciarSesion()">
+                Iniciar Sesión
+            </button>
+        </form>
+
+        <p class="note">¿Olvidaste tu contraseña? <a href="recuperar.html">Recupérala aquí</a></p>
+    </div>
+</body>
+</html>
