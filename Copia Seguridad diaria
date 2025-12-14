@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Definimos variables de fecha
+HOY=$(date +%Y-%m-%d)
+AYER=$(date -d "yesterday" +%Y-%m-%d)
+
+# Definimos directorios
+ORIGEN="/var/www/html/"
+DESTINO="/backups/$HOY"
+PREVIO="/backups/$AYER"
+
+# Ejecutamos rsync con link-dest
+# Si existe la carpeta de ayer, la usamos de base. Si no, hace copia completa.
+if [ -d "$PREVIO" ]; then
+    rsync -av --link-dest=$PREVIO $ORIGEN $DESTINO
+else
+    rsync -av $ORIGEN $DESTINO
+fi
